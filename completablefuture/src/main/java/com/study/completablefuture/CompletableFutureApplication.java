@@ -1,13 +1,13 @@
-package com.study.completeablefuture;
+package com.study.completablefuture;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CompleteablefutureApplication {
+public class CompletableFutureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CompleteablefutureApplication.class, args);
+		SpringApplication.run(CompletableFutureApplication.class, args);
 	}
 
 }
