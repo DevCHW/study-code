@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:core;MODE=MySQL
+      username: sa
+      password:
+      maximum-pool-size: 10
+      pool-name: core-db-pool
+
+  jpa:
+    ddl-auto: create
+    show-sql: true
+
