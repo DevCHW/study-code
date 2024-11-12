@@ -1,0 +1,99 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.asciidoctor.jvm.convert' version "3.3.2"
+}
+
+// 전역 변수 선언
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+configurations {
+    asciidoctorExt
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // restdocs
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
+    testImplementation 'io.rest-assured:spring-mock-mvc'
+}
+
+tasks.named('test') {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+asciidoctor {
+    dependsOn test
+    configurations 'asciidoctorExt'
+    baseDirFollowsSourceFile()	// 다른 adoc 파일을 include 할 때 경로를 baseDir로 맞춘다.
+    inputs.dir snippetsDir
+    outputDir file('build/docs/asciidoc')
+
+    sources {
+        include("**/index.adoc") // html로 만들 adoc 파일 설정
+    }
+}
+
+tasks.resolveMainClassName {
+    dependsOn 'copyDocument'
+}
+
+tasks.jar {
+    dependsOn 'copyDocument'
+}
+
+// Task 추가
+tasks.register('copyDocument', Copy) {
+    from file("build/docs/asciidoc")
+    into file("build/resources/main/static/docs")
+
+    include "index.html"
+
+    rename "index.html", "api-docs.html"
+
+    dependsOn asciidoctor
+}
+
+build {
+    dependsOn copyDocument
+}
+
+bootJar {
+    dependsOn copyDocument
+}
+

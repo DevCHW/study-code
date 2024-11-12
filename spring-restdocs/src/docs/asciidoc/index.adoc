@@ -1,0 +1,39 @@
+ifndef::snippets[]
+:snippets: build/generated-snippets
+endif::[]
+= REST API 문서
+:hardbreaks:
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+== 회원 API
+
+=== 회원 생성
+회원을 생성하는 API 입니다.
+
+==== Request HTTP Example
+include::{snippets}/create-member/http-request.adoc[]
+==== Request Fields
+include::{snippets}/create-member/request-fields.adoc[]
+==== Response HTTP Example
+include::{snippets}/create-member/http-response.adoc[]
+==== Response Fields
+include::{snippets}/create-member/response-fields.adoc[]
+
+=== 회원 단건 조회
+회원 정보를 조회하는 API 입니다.
+
+==== Request HTTP Example
+include::{snippets}/get-member/http-request.adoc[]
+==== Path Parameters
+include::{snippets}/get-member/path-parameters.adoc[]
+==== Response HTTP Example
+include::{snippets}/get-member/http-response.adoc[]
+==== Response Fields
+include::{snippets}/get-member/response-fields.adoc[]
+
+
