@@ -1,4 +1,6 @@
 package com.devchw.springai.dto;
 
-public class MyPromptTemplate {
+public record MyPromptTemplate(
+        String subject
+) {
 }

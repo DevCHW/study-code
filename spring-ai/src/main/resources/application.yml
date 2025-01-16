@@ -1,0 +1,10 @@
+spring:
+  config:
+    import:
+      - chatgpt.yml
+  ai:
+    openai:
+      api-key: ${chatgpt.api-key}
+      chat:
+        options:
+          model: gpt-4o-mini

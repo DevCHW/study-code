@@ -1,8 +1,6 @@
 package com.devchw.springai;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-public class ChatController {
+public class ChatGPTController {
 
     private final OpenAiChatModel openAiChatModel;
 //    private final VertexAiGeminiChatModel vertexAiGeminiChatModel;
@@ -25,13 +23,7 @@ public class ChatController {
         String openAiResponse = openAiChatModel.call(message);
         responses.put("openai(chatGPT) 응답", openAiResponse);
 
-//        String vertexAiGeminiResponse = vertexAiGeminiChatModel.call(message);
-//        responses.put("vertexai(gemini) 응답", vertexAiGeminiResponse);
         return responses;
     }
 
-//    @PostMapping("/api/prompt-template")
-//    public PromptTemplate promptTemplate(@RequestBody String message) {
-//
-//    }
 }
