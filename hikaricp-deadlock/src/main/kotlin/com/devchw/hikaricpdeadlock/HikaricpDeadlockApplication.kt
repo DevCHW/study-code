@@ -1,4 +1,4 @@
-package io.hhplus.cleanarchitecture.hikaricpdeadlock
+package com.devchw.hikaricpdeadlock
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

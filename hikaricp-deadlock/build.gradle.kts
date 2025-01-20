@@ -1,4 +1,5 @@
 plugins {
+    id("java")
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.4.1"
@@ -6,7 +7,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.25"
 }
 
-group = "io.hhplus.cleanarchitecture"
+group = "com.devchw.hikaricpdeadlock"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -32,11 +33,13 @@ dependencies {
     // reflection
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    // mysql
     runtimeOnly("com.mysql:mysql-connector-j")
 
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:mysql")

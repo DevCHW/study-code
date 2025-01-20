@@ -1,11 +1,11 @@
-package io.hhplus.cleanarchitecture.hikaricpdeadlock
+package com.devchw.hikaricpdeadlock
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class ParentService(
-    private val childService: ChildService,
+class KotlinParentService(
+    private val childService: KotlinChildService,
 ) {
 
     @Transactional
