@@ -1,0 +1,117 @@
+version: '3'
+
+services:
+
+#### MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=application
+      - MYSQL_PASSWORD=application
+      - MYSQL_DATABASE=study
+    volumes:
+      - ./data/mysql/:/var/lib/mysql
+      - ./data/my.cnf:/etc/mysql/my.cnf
+
+#### Redis
+#  redis:
+#    image: redis:6.2.6-alpine
+#    container_name: redis
+#    restart: unless-stopped
+#    ports:
+#      - "6379:6379"
+#    healthcheck:
+#      test: [ "CMD", "redis-cli", "ping" ]
+#      interval: 5s
+#      retries: 10
+
+#### Kafka
+#  zookeeper:
+#    image: confluentinc/cp-zookeeper:7.9.0
+#    container_name: zookeeper
+#    restart: unless-stopped
+#    platform: linux/arm64
+#    environment:
+#      ZOOKEEPER_CLIENT_PORT: 2181
+#      ZOOKEEPER_TICK_TIME: 2000
+#
+#  kafka:
+#    image: confluentinc/cp-kafka:7.9.0
+#    container_name: kafka
+#    restart: unless-stopped
+#    healthcheck:
+#      test: [ "CMD", "kafka-broker-api-versions", "--bootstrap-server=localhost:9092" ]
+#      interval: 10s
+#      retries: 5
+#      timeout: 5s
+#    ports:
+#      - "9092:9092"
+#    depends_on:
+#      - zookeeper
+#    environment:
+#      KAFKA_BROKER_ID: 1
+#      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+#      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+#      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+#
+#  connect:
+#    image: debezium/connect:2.6.1.Final
+#    container_name: connect
+#    depends_on:
+#      - kafka
+#      - mysql
+#    ports:
+#      - "8083:8083"
+#    environment:
+#      - BOOTSTRAP_SERVERS=kafka:29092
+#      - GROUP_ID=debezium-00
+#      - CONFIG_STORAGE_TOPIC=my_connect_configs
+#      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+#      - STATUS_STORAGE_TOPIC=my_connect_statuses
+#
+#  kafka-ui:
+#    image: provectuslabs/kafka-ui
+#    container_name: kafka-ui
+#    restart: unless-stopped
+#    depends_on:
+#      - kafka
+#    ports:
+#      - "9090:8080"
+#    environment:
+#      - KAFKA_CLUSTERS_0_NAME=local
+#      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+#      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+
+### Elasticsearch
+#  elastic:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.4 # 8.17.4 버전
+#    ports:
+#      - 9200:9200 # 9200번 포트에서 Elasticsearch 실행
+#    environment:
+#      # 아래 설정은 개발/테스트 환경에서 간단하게 테스트하기 위한 옵션 (운영 환경에서는 설정하면 안 됨)
+#      - discovery.type=single-node # 단일 노드 (지금은 알 필요 없음)
+#      - xpack.security.enabled=false # 보안 설정
+#      - xpack.security.http.ssl.enabled=false # 보안 설정
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana:8.17.4 # 8.17.4 버전
+#    ports:
+#      - 5601:5601 # 5601번 포트에서 kibana 실행
+#    environment:
+#      - ELASTICSEARCH_HOSTS=http://elastic:9200 # kibana가 통신할 Elasticsearch 주소 알려주기
+
+networks:
+  default:
+    driver: bridge
