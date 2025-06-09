@@ -42,3 +42,9 @@ out/
 ### Custom
 data
 !**/src/main/**/resources/static/*.html
+
+### Mac OS ###
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
