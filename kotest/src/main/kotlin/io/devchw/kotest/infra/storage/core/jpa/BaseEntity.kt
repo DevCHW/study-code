@@ -1,4 +1,4 @@
-package io.devchw.kotest.infra.storage.jpa
+package io.devchw.kotest.infra.storage.core.jpa
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp

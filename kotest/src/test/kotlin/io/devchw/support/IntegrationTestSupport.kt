@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.support
+package io.devchw.support
 
 import kr.hhplus.be.server.support.database.AfterDatabaseCleanUp
 import org.springframework.boot.test.context.SpringBootTest

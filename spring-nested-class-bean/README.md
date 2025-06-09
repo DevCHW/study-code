@@ -101,8 +101,6 @@ public class SpringNestedClassBeanApplication {
 
 예제에 쓰인 모든 코드는 [깃허브](https://github.com/DevCHW/study-code/tree/main/spring-nested-class-bean) 에서 확인하실 수 있습니다.
 
-감사합니다. 
-
 ### **참고자료**
 
 [자바의 내부 클래스는 스프링 빈이 될 수 있을까?](https://www.youtube.com/watch?v=2G41JMLh05U)

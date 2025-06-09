@@ -1,4 +1,7 @@
 package io.devchw.example.support.restdocs.enums
 
-class RestDocsDocumentEnum {
+data class RestDocsDocumentEnum(
+    val name: String,
+    val description: String,
+) {
 }

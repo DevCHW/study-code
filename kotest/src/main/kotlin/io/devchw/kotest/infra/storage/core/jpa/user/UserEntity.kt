@@ -1,5 +1,6 @@
-package io.devchw.kotest.infra.storage.core.jpa.member
+package io.devchw.kotest.infra.storage.core.jpa.user
 
+import io.devchw.kotest.domain.user.User
 import io.devchw.kotest.infra.storage.core.jpa.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -13,4 +14,29 @@ class UserEntity(
 
     @Column(name = "age")
     val age: Int,
-) : BaseEntity()
+
+    @Column(name = "email")
+    val email: String,
+) : BaseEntity() {
+
+    fun toDomain(): User {
+        return User(
+            id = id,
+            name = name,
+            age = age,
+            email = email,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
+        )
+    }
+
+    companion object {
+        fun of(user: User): UserEntity {
+            return UserEntity(
+                name = user.name,
+                age = user.age,
+                email = user.email,
+            )
+        }
+    }
+}

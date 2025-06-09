@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/local?characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      pool-name: core-db-pool
+      maximum-pool-size: 3
+      connection-timeout: 10000
+      max-lifetime: 60000
+
+  jpa:
+    open-in-view: false
+    generate-ddl: false
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.timezone.default_storage: NORMALIZE_UTC
+      hibernate.jdbc.time_zone: UTC
+      hibernate.default_batch_fetch_size: 100
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:sql/schema.sql

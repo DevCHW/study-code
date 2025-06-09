@@ -12,12 +12,9 @@ import java.util.Map;
 public class ChatGPTController {
 
     private final OpenAiChatModel openAiChatModel;
-//    private final VertexAiGeminiChatModel vertexAiGeminiChatModel;
-
 
     @PostMapping("/api/chat")
     public Map<String, String> chat(@RequestBody String message) {
-        String command = "Tell me answer that question {}";
         Map<String, String> responses = new HashMap<>();
 
         String openAiResponse = openAiChatModel.call(message);

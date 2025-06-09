@@ -1,4 +1,4 @@
-package io.devchw.kotest.infra.storage.core.config
+package io.devchw.kotest.infra.storage.core.jpa.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,4 +1,8 @@
 package io.devchw.example.controller.dto.request
 
-class PostApiRequest {
-}
+import io.devchw.example.enums.ExampleType
+
+data class PostExampleRequest(
+    val name: String,
+    val type: ExampleType,
+)

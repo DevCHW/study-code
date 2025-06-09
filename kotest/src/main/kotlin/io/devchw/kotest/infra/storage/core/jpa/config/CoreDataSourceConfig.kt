@@ -1,4 +1,4 @@
-package io.devchw.kotest.infra.storage.core.config
+package io.devchw.kotest.infra.storage.core.jpa.config
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

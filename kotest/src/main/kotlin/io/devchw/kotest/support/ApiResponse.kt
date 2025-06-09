@@ -1,31 +1,20 @@
-package com.hhplus.board.support.response
+package io.devchw.kotest.support
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import kr.hhplus.be.server.domain.support.error.ErrorType
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class ApiResponse<T> private constructor(
-    val result: ApiResultType,
     val data: T? = null,
     val error: Error? = null,
 ) {
     companion object {
         fun success(): ApiResponse<Any> {
-            return ApiResponse(ApiResultType.SUCCESS, null)
+            return ApiResponse( null)
         }
 
         fun <S> success(data: S): ApiResponse<S> {
-            return ApiResponse(ApiResultType.SUCCESS, data)
+            return ApiResponse(data)
         }
-
-        fun <S> error(errorType: ErrorType): ApiResponse<S> {
-            return ApiResponse(ApiResultType.ERROR, error = Error(errorType.name, errorType.message))
-        }
-
-        fun <S> error(errorType: ErrorType, message: String): ApiResponse<S> {
-            return ApiResponse(ApiResultType.ERROR, error = Error(errorType.name, message))
-        }
-
     }
 
     data class Error(

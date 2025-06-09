@@ -5,4 +5,7 @@ package io.devchw.ratelimiter
  * @since 2025-06-09
  */
 interface RateLimiter {
+
+    fun allowRequest(): Boolean
+
 }
