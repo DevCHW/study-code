@@ -8,7 +8,7 @@ import kotlin.concurrent.withLock
  * @since 2025-06-09
  * Leaky Bucket (누출 버킷) 알고리즘 기반 Rate Limiter.
  *
- * ## 동작 원리
+ * 동작 원리
  * - 요청은 버킷에 물을 붓는 행위로 생각.
  * - 일정 속도로 물이 새어나감 (처리 속도).
  * - 버킷이 가득 차 있으면 요청 거부 (과도한 트래픽 방지).
