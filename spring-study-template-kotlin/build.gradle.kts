@@ -38,7 +38,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
 }
 
-// Development
+// Development Dependencies
 dependencies {
     // Spring Docker Compose
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
