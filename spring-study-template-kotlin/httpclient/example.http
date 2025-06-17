@@ -1,0 +1,22 @@
+### Example GET API Call
+GET {{host}}/api/example
+Content-Type: application/json
+
+### Example POST API Call
+POST {{host}}/api/example
+Content-Type: application/json
+
+{
+  "key": "value"
+}
+
+### Example MultiPart API Call
+POST {{host}}/api/example/multipart
+Content-Type: multipart/form-data
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="example.txt"
+Content-Type: text/plain
+
+< file/example.txt
+--boundary--
