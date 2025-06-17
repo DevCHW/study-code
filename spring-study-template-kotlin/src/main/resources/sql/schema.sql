@@ -1,4 +1,4 @@
-# 아래 테이블 생성 DDL 문은 예시입니다.
+-- 아래 테이블 생성 DDL 문은 예시입니다.
 drop table if exists example_users cascade;
 
 create table example_users
