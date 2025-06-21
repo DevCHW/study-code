@@ -29,7 +29,7 @@ spring.config.activate.on-profile: local
 spring:
   datasource:
     hikari:
-      jdbc-url: jdbc:mysql://localhost:3307/study?characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+      jdbc-url: jdbc:mysql://localhost:3306/study?characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
       username: application
       password: application
 
@@ -40,7 +40,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: none
     properties:
       hibernate:
         timezone.default_storage: NORMALIZE_UTC
