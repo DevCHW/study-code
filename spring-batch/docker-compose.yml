@@ -1,0 +1,37 @@
+services:
+  #### MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootPassword
+      - MYSQL_USER=application
+      - MYSQL_PASSWORD=application
+      - MYSQL_DATABASE=windly
+    volumes:
+      - ./data/mysql/:/var/lib/mysql
+      - ./data/my.cnf:/etc/mysql/my.cnf
+
+  #### Redis
+  redis:
+    image: redis:6.2.6-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      retries: 10
+
+networks:
+  default:
+    driver: bridge
